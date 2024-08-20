@@ -1,0 +1,195 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: #11171f;
+  font-family: "Poppins", sans-serif;
+}
+
+.mainBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.bubbles {
+  display: flex;
+}
+
+.bubbles span {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  background: #4fc3dc;
+  margin: 0 4px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 10px #4fc3dc44, 0 0 50px #4fc3dc, 0 0 100px #4fc3dc;
+  animation: animate 12s linear infinite;
+  animation-duration: calc(120s / var(--i));
+}
+.bubbles span:nth-child(even) {
+  background: #ff2d75;
+  box-shadow: 0 0 0 10px #ff2d7544, 0 0 50px #ff2d75, 0 0 100px #ff2d75;
+}
+
+@keyframes animate {
+  0% {
+    transform: translateY(100vh) scale(0);
+  }
+  100% {
+    transform: translateY(-10vh) scale(1);
+  }
+}
+
+#logo {
+  position: relative;
+  color: #cfcfcf;
+  text-shadow: 0 0 50px #0f0f, 0 0 80px #0f0f, 0 0 110px #0f0f;
+  animation: animateText 5s linear infinite;
+}
+
+@keyframes animateText {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+#firstDiv,
+#secondDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#firstEffect {
+  /* position: relative; */
+  background: #252839;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 450px;
+  height: 450px;
+}
+
+#lightNavbar li {
+  position: relative;
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+#lightNavbar li:last-child {
+  margin-bottom: 0;
+}
+
+#lightNavbar li a {
+  position: relative;
+  font-size: 40px;
+  text-decoration: none;
+  letter-spacing: 0.25em;
+  color: #fff2;
+  line-height: 1em;
+}
+
+#lightNavbar li a::before {
+  content: attr(data-text);
+  position: absolute;
+  color: var(--clr);
+  width: 0;
+  overflow: hidden;
+  border-right: 6px solid var(--clr);
+  transition: 1s;
+}
+
+#lightNavbar li a:hover::before {
+  width: 100%;
+  filter: drop-shadow(0 0 20px var(--clr));
+}
+#lightNavbar li a span {
+  position: relative;
+  animation: animeText linear infinite;
+}
+#lightNavbar ul:hover li a span {
+  opacity: 0.15;
+  animation-play-state: paused;
+}
+
+@keyframes animeText {
+  0%,
+  20% {
+    color: #fff2;
+    filter: drop-shadow(0 0 0 var(--clr));
+  }
+  21.001%,
+  79.999% {
+    color: var(--clr);
+    filter: drop-shadow(0 0 25px var(--clr));
+  }
+  80%,
+  100% {
+    color: #fff2;
+    filter: drop-shadow(0 0 0 var(--clr));
+  }
+}
+
+#rgbBorder {
+  background: #252839;
+  text-align: center;
+  color: darkgray;
+  width: 450px;
+  height: 450px;
+  position: relative;
+  border-radius: 10px;
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+#rgbBorder::after,
+#rgbBorder::before {
+  content: "";
+  position: absolute;
+  height: 101%;
+  width: 101%;
+  background-image: conic-gradient(
+    from var(--angle),
+    transparent 10%,
+    #ff4545,
+    #00ff99,
+    #006aff,
+    #ff0095,
+    #ff4545
+  );
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: -1;
+  border-radius: 10px;
+  animation: 3s spin linear infinite;
+}
+
+#rgbBorder::before {
+  filter: blur(1.5rem) opacity(0.5);
+}
+
+@keyframes spin {
+  from {
+    --angle: 0deg;
+  }
+  to {
+    --angle: 360deg;
+  }
+}
